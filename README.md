@@ -16,7 +16,9 @@ This system is designed to efficiently manage gym operations by providing a plat
 - **Password Hashing**: bcrypt
 -  **Password Hashing**: dotenv
 
-
+## Admin Credentials
+- Email : admin@gmail.com
+- Password: admin123
 
 ## Relation Diagram
 
