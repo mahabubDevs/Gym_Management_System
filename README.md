@@ -140,6 +140,6 @@ erDiagram
         TIMESTAMP booking_date
         TIMESTAMP created_at
     }
-
+```
 
 
