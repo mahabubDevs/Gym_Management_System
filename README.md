@@ -62,7 +62,7 @@ const ScheduleSchema = new Schema({
 }, { timestamps: true });
 
 module.exports = mongoose.model('Schedule', ScheduleSchema);
-
+```javascript
 ---
 
 ## Technologies Used
