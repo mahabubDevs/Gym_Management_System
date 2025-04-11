@@ -176,3 +176,57 @@ http://localhost:3000
 
 ## Live Hosting Link
 Provide the live link: https://gym-management-system-6bga.onrender.com
+
+##  Testing Instructions
+
+To test the core features of the Gym Management System, use the demo admin credentials below and follow the steps:
+
+---
+
+### 🧑‍💼 Admin Features
+
+1. **Create Trainer**
+   - Navigate to the "Create Trainer" page.
+   - Fill in trainer details (name, email, password).
+   - Submit to create a new trainer account.
+
+2. **Schedule Gym Classes**
+   - Go to "Schedule Classes".
+   - Select a date and time (Max 5 per day).
+   - Assign a trainer to the schedule.
+   - Try to add more than 5 classes — you should see a validation error.
+
+3. **Assign Trainers**
+   - During class scheduling, choose a trainer from the dropdown.
+   - Ensure that trainer appears in the trainer’s dashboard.
+
+---
+
+### 🏋️ Trainer Features
+
+1. **View Class Schedules**
+   - Log in as a trainer (use test credentials or the one created via admin).
+   - Go to "My Schedules" to view assigned classes.
+
+---
+
+### 🧍 Trainee Features
+
+1. **Create Profile**
+   - Register as a trainee with name, email, and password.
+
+2. **View Class Schedules**
+   - After login, go to "Available Classes".
+
+3. **Book a Class**
+   - Select an available class and click "Book".
+   - Try booking a class that already has 10 trainees — you should receive a booking limit error.
+
+---
+
+### ⚠️ Business Rule Testing
+
+- **Admin:** Can’t schedule more than 5 classes per day.
+- **Trainee:** Can’t book a class with 10 existing bookings.
+- **Trainer:** Can only view their assigned classes.
+- **Unauthorized Access:** Try accessing a protected route with no token or wrong role to test error handling.
