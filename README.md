@@ -23,7 +23,7 @@ This system is designed to efficiently manage gym operations by providing a plat
   
 ---
 
-### 🔐 Auth Routes
+###  Auth Routes
 
 #### POST `/auth/register/trainer`
 #### POST `/auth//register/adminr`
@@ -63,11 +63,70 @@ Response:
 
 ```
 
+### Trainer Routes
+#### POST `/trainers/`
+Headers:
+Authorization: Bearer <trainer_token>
 
+```json
+Request Body:
+{
+    "name": "test Trainer",
+    "email": "testTrainer@gmail.com",
+    "password": "test"
+}
+Response:
+{
+    "success": true,
+    "message": "Trainer created successfully.",
+    "data": {
+        "name": "test Trainer",
+        "email": "testTrainer@gmail.com",
+        "password": "$2b$10$wZvjcKhuHcA2oFtvxdOBdef447z3t3Xe8XHjW1bb/mESv/mUaA62G"
+        "role": "trainer",
+        "_id": "67f8e46ee24ecc13203af2f6",
+        "createdAt": "2025-04-11T09:44:14.422Z",
+        "updatedAt": "2025-04-11T09:44:14.422Z",
+        "__v": 0
+    }
+}
 
+```
 
+#### GET `/trainers/`
+Headers:
+Authorization: Bearer <trainer_token>
 
+```json
+Response:
 
+{
+    "success": true,
+    "data": [
+        {
+            "_id": "67f76de18c327ee04c808871",
+            "name": "mahabub",
+            "email": "test@gmail.com",
+            "password": "$2b$10$HvDDvaRrNIslkGMLrsrWbeytXVum1GLWuv9Iedy6xpbp0QWnsxsgi",
+            "role": "admin",
+            "createdAt": "2025-04-10T07:06:09.923Z",
+            "updatedAt": "2025-04-10T07:06:09.923Z",
+            "__v": 0
+        },
+        {
+            "_id": "67f774b7a1cb71a3d892df73",
+            "name": "mahabub",
+            "email": "test1@gmail.com",
+            "password": "$2b$10$4w64Wub5aRFzfDCRQUmMH.JQZMXKUN.JyJ3GgoIpvVx1J0lCN7J.i",
+            "role": "admin",
+            "createdAt": "2025-04-10T07:35:19.500Z",
+            "updatedAt": "2025-04-10T07:35:19.500Z",
+            "__v": 0
+        },
+  ]
+}
+
+```
 
 
 
