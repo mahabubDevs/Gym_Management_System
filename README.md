@@ -65,8 +65,12 @@ Response:
 
 ### Trainer Routes
 #### POST `/trainers`
+create a trainers 
+
+```json
 Headers:
 Authorization: Bearer <trainer_token>
+```
 
 ```json
 Request Body:
@@ -94,8 +98,11 @@ Response:
 ```
 
 #### GET `/trainers`
+get all trainers list
+```json
 Headers:
 Authorization: Bearer <trainer_token>
+```
 
 ```json
 Response:
@@ -128,8 +135,11 @@ Response:
 
 ```
 #### GET `/trainers/:id`
+id use get trainers
+```json
 Headers:
 Authorization: Bearer <trainer_token>
+```
 
 ```json
 Response: 
@@ -150,8 +160,11 @@ Response:
 
 ### Trainee Routes
 #### POST `/trainees`
+create a trainees
+```json
 Headers:
 Authorization: Bearer <trainer_token>
+```
 
 ```json
 Request body:
@@ -183,8 +196,11 @@ Response:
 
 ```
 #### GET `/trainees`
+get all trainees list
+```json
 Headers:
 Authorization: Bearer <trainer_token>
+```
 
 ```json
 Response:
@@ -222,8 +238,11 @@ Response:
 }
 ```
 #### GET `/trainees/:id`
+single trainees get 
+```json
 Headers:
 Authorization: Bearer <trainer_token>
+```
 
 ```json
 Response:
@@ -252,8 +271,11 @@ Response:
 ```
 
 #### POST `/trainees/book-class`
+trainees create a class-book
+```json
 Headers:
 Authorization: Bearer <trainer_token>
+```
 
 ```json
 Request body:
@@ -286,9 +308,11 @@ Response:
 
 ```
 #### POST `/trainees/cancel-booking`
-
+trainees cancel booking 
+```json
 Headers:
 Authorization: Bearer <trainer_token>
+```
 
 ```json
 Request body:
@@ -317,6 +341,186 @@ Response:
 }
 
 ```
+### Schedule Routes
+### POST `/schedules`
+create a class schedules
+
+```json
+Headers:
+Authorization: Bearer <trainer_token>
+```
+```json
+Request body:
+{
+    "date": "2025-12-04",
+    "startTime": "4:00 pm",
+    "endTime": "6:00pm",
+    "trainerId": "67f876847c56af1f3131ffab"
+
+}
+
+Response:
+
+{
+    "success": true,
+    "message": "Schedule created successfully.",
+    "data": {
+        "date": "2025-12-04T00:00:00.000Z",
+        "startTime": "4:00 pm",
+        "endTime": "6:00pm",
+        "trainer": "67f876847c56af1f3131ffab",
+        "trainees": [],
+        "_id": "67f8e20cf6fcc959ce017d02",
+        "createdAt": "2025-04-11T09:34:04.745Z",
+        "updatedAt": "2025-04-11T09:34:04.745Z",
+        "__v": 0
+    }
+}
+```
+#### GET `/schedules`
+get all Schedules see there
+
+```json
+Headers:
+Authorization: Bearer <trainer_token>
+```
+```json
+Response:
+{
+    "success": true,
+    "data": [
+        {
+            "_id": "67f87b8b7c56af1f3131ffc3",
+            "date": "2025-12-03T18:00:00.000Z",
+            "startTime": "4:00 pm",
+            "endTime": "6:00pm",
+            "trainer": {
+                "_id": "67f876847c56af1f3131ffab",
+                "name": "new Trainer",
+                "email": "trainer21@gmail.com"
+            },
+            "trainees": [],
+            "createdAt": "2025-04-11T02:16:43.749Z",
+            "updatedAt": "2025-04-11T02:16:43.749Z",
+            "__v": 0
+        }
+    ]
+}
+```
+#### GET `/schedules/:id`
+singel id search schedules
+```json
+Headers:
+Authorization: Bearer <trainer_token>
+```
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "_id": "67f87b8b7c56af1f3131ffc3",
+            "date": "2025-12-03T18:00:00.000Z",
+            "startTime": "4:00 pm",
+            "endTime": "6:00pm",
+            "trainer": {
+                "_id": "67f876847c56af1f3131ffab",
+                "name": "new Trainer",
+                "email": "trainer21@gmail.com"
+            },
+            "trainees": [],
+            "createdAt": "2025-04-11T02:16:43.749Z",
+            "updatedAt": "2025-04-11T02:16:43.749Z",
+            "__v": 0
+        }
+    ]
+}
+```
+#### PUT `/schedules/:id`
+update Schedule
+```json
+Headers:
+Authorization: Bearer <trainer_token>
+```
+```json
+Request body:
+{
+    "date": "12-04-2025",
+    "startTime": "5:00 pm",
+    "endTime": "7:00pm",
+    "trainerId": "67f876847c56af1f3131ffab"
+
+}
+
+Response:
+{
+    "success": true,
+    "message": "Schedule updated successfully.",
+    "data": {
+        "_id": "67f87b8b7c56af1f3131ffc3",
+        "date": "2025-12-03T18:00:00.000Z",
+        "startTime": "5:00 pm",
+        "endTime": "7:00pm",
+        "trainer": "67f876847c56af1f3131ffab",
+        "trainees": [],
+        "createdAt": "2025-04-11T02:16:43.749Z",
+        "updatedAt": "2025-04-11T09:25:48.615Z",
+        "__v": 0
+    }
+}
+```
+#### DEL `/schedules/:id`
+delete schedule
+```json
+Headers:
+Authorization: Bearer <trainer_token>
+```
+
+```json
+Response:
+{
+    "success": true,
+    "message": "Schedule deleted successfully."
+}
+```
+#### GET `/schedules/date/:date`
+date use search schedules
+```json
+Headers:
+Authorization: Bearer <trainer_token>
+```
+```json
+Response:
+{
+    "success": true,
+    "data": [
+        {
+            "_id": "67f8e20cf6fcc959ce017d02",
+            "date": "2025-12-04T00:00:00.000Z",
+            "startTime": "4:00 pm",
+            "endTime": "6:00pm",
+            "trainer": {
+                "_id": "67f876847c56af1f3131ffab",
+                "name": "new Trainer",
+                "email": "trainer21@gmail.com"
+            },
+            "trainees": [],
+            "createdAt": "2025-04-11T09:34:04.745Z",
+            "updatedAt": "2025-04-11T09:34:04.745Z",
+            "__v": 0
+        }
+    ]
+}
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
