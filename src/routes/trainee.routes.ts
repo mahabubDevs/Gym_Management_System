@@ -10,6 +10,6 @@ router.get('/', authenticate, authorize(UserRole.ADMIN), TraineeController.getAl
 router.get('/:id', authenticate, authorize(UserRole.ADMIN, UserRole.TRAINEE), TraineeController.getTraineeById);
 router.post('/book-class', authenticate, authorize(UserRole.TRAINEE), TraineeController.bookClass);
 router.post('/cancel-booking', authenticate, authorize(UserRole.TRAINEE), TraineeController.cancelBooking);
-router.get('/bookings', authenticate, authorize(UserRole.TRAINEE), TraineeController.getTraineeBookings);
+
 
 export default router;
