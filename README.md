@@ -173,3 +173,6 @@ npm start
 ```
 Server will run on:
 http://localhost:3000
+
+## Live Hosting Link
+Provide the live link: https://gym-management-system-6bga.onrender.com
