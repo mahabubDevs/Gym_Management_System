@@ -17,8 +17,8 @@ This system is designed to efficiently manage gym operations by providing a plat
 -  **Environment setup**: dotenv
 
 ## Admin Credentials
-- Email : admin@gmail.com
-- Password: admin123
+- Email : admintest@gmail.com
+- Password: test
 
 ## Database Schema (Mongoose Models)
 
