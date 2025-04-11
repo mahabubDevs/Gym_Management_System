@@ -16,6 +16,61 @@ This system is designed to efficiently manage gym operations by providing a plat
 - **Password Hashing**: bcrypt
 -  **Environment setup**: dotenv
 
+  ##  API Endpoints
+  All endpoints are prefixed with:
+  BASE_URL = http://localhost:3000
+
+  
+---
+
+### 🔐 Auth Routes
+
+#### POST `/auth/register/trainer`
+#### POST `/auth//register/adminr`
+#### POST `/auth/register/trainee`
+
+Registers a new (trainee, admin, trainer) user.
+
+```json
+Request Body:
+{
+  "name": "Mahabub Rahman",
+  "email": "mahabub@example.com",
+  "password": "123456"
+}
+Response:
+{
+    "success": true,
+    "message": "Trainer registered successfully."
+}
+```
+#### POST `/auth/login`
+Login a  (trainee, admin, trainer) user.
+  ```json
+Request Body:
+{
+    "email": "mahabub@gmail.com",
+    "password": "123456"
+}
+Response:
+{
+    "success": true,
+    "message": "Logged in successfully.",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3Zjc3NTNiYTFjYjcxYTNkODkyZGY3YSIsInJvbGUiOiJ0cmFpbmVlIiwiaWF0IjoxNzQ0Mzc1MTkyLCJleHAiOjE3NDQzNzg3OTJ9.i2sq6M_c2W3ESXirhftmepi_dua5v34Ck4XsXnBKmRY",
+    "role": "trainee",
+    "userId": "67f7753ba1cb71a3d892df7a"
+}
+
+```
+
+
+
+
+
+
+
+
+
 ## Admin Credentials
 - Email : admintest@gmail.com
 - Password: test
