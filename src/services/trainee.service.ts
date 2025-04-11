@@ -122,26 +122,3 @@ export const cancelBooking = async (traineeId: string, scheduleId: string) => {
 
 
 
-export const getTraineeBookings = async (traineeId: string) => {
-  try {
-  
-    if (!mongoose.Types.ObjectId.isValid(traineeId)) {
-      const error = new Error('Invalid Trainee ID format.');
-      (error as any).statusCode = 400;
-      throw error;
-    }
-
-    const trainee = await Trainee.findById(traineeId).populate('bookedClasses');
-    console.log('Fetched trainee:', trainee);
-    if (!trainee) {
-      const error = new Error('Trainee not found.');
-      (error as any).statusCode = 404;
-      console.error('Throwing trainee not found error:', error);
-      throw error;
-    }
-    return trainee.bookedClasses; 
-  } catch (error: any) {
-    console.error('Error fetching trainee bookings:', error);
-    throw error; 
-  }
-};
