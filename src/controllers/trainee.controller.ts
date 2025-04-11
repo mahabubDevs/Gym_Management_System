@@ -66,22 +66,3 @@ export const cancelBooking = async (req: AuthenticatedRequest, res: Response, ne
 
 
 
-export const getTraineeBookings = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
-  console.log("ami")
-  try {
-    console.log('req.user:', req.user);
-    console.log("ami")
-    const traineeId = req.user?.id;
-    if (!traineeId) {
-      return res.status(401).json({ success: false, message: 'Unauthorized access.' });
-    }
-    const bookings = await TraineeService.getTraineeBookings(traineeId);
-    if (!Array.isArray(bookings)) {
-      return res.status(500).json({ success: false, message: 'Failed to fetch bookings.' });
-    }
-    res.status(200).json({ success: true, data: bookings });
-  } catch (error: any) {
-    console.error('Error in controller:', error);
-    next(error); 
-  }
-};
