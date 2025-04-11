@@ -6,6 +6,64 @@ This system is designed to efficiently manage gym operations by providing a plat
 
 
 
+## Database Schema (Mongoose Models)
+
+```javascript
+// models/admin.model.js (Potentially merged with Trainer model)
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const AdminSchema = new Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    role: { type: String, default: 'admin', immutable: true }
+}, { timestamps: true });
+
+module.exports = mongoose.model('Admin', AdminSchema);
+
+// models/trainer.model.js
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const TrainerSchema = new Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    role: { type: String, default: 'trainer', immutable: true }
+}, { timestamps: true });
+
+module.exports = mongoose.model('Trainer', TrainerSchema);
+
+// models/trainee.model.js
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const TraineeSchema = new Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    role: { type: String, default: 'trainee', immutable: true },
+    bookedClasses: [{ type: Schema.Types.ObjectId, ref: 'Schedule' }]
+}, { timestamps: true });
+
+module.exports = mongoose.model('Trainee', TraineeSchema);
+
+// models/schedule.model.js
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const ScheduleSchema = new Schema({
+    date: { type: Date, required: true },
+    startTime: { type: String, required: true }, // e.g., "09:00"
+    endTime: { type: String, required: true },   // e.g., "11:00" (2-hour duration)
+    trainer: { type: Schema.Types.ObjectId, ref: 'Trainer', required: true },
+    trainees: [{ type: Schema.Types.ObjectId, ref: 'Trainee' }]
+}, { timestamps: true });
+
+module.exports = mongoose.model('Schedule', ScheduleSchema);
+
+
 ## Technology Stack
 
 - **Backend**: Node.js with Express.js
