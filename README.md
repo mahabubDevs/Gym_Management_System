@@ -108,7 +108,7 @@ Response:
             "name": "mahabub",
             "email": "test@gmail.com",
             "password": "$2b$10$HvDDvaRrNIslkGMLrsrWbeytXVum1GLWuv9Iedy6xpbp0QWnsxsgi",
-            "role": "admin",
+            "role": "trainer",
             "createdAt": "2025-04-10T07:06:09.923Z",
             "updatedAt": "2025-04-10T07:06:09.923Z",
             "__v": 0
@@ -118,7 +118,7 @@ Response:
             "name": "mahabub",
             "email": "test1@gmail.com",
             "password": "$2b$10$4w64Wub5aRFzfDCRQUmMH.JQZMXKUN.JyJ3GgoIpvVx1J0lCN7J.i",
-            "role": "admin",
+            "role": "trainer",
             "createdAt": "2025-04-10T07:35:19.500Z",
             "updatedAt": "2025-04-10T07:35:19.500Z",
             "__v": 0
@@ -127,7 +127,26 @@ Response:
 }
 
 ```
+#### GET `/trainers/:id`
+Headers:
+Authorization: Bearer <trainer_token>
 
+```json
+Response: 
+{
+    "success": true,
+    "data": {
+        "_id": "67f76de18c327ee04c808871",
+        "name": "mahabub",
+        "email": "test@gmail.com",
+        "password": "$2b$10$HvDDvaRrNIslkGMLrsrWbeytXVum1GLWuv9Iedy6xpbp0QWnsxsgi",
+        "role": "trainer",
+        "createdAt": "2025-04-10T07:06:09.923Z",
+        "updatedAt": "2025-04-10T07:06:09.923Z",
+        "__v": 0
+    }
+}
+```
 
 
 ## Admin Credentials
