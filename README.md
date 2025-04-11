@@ -142,4 +142,34 @@ erDiagram
     }
 ```
 
+## ⚙ Instructions to Run Locally
 
+Follow these steps to run the project on your local machine:
+###  Clone the Repository
+```bash
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
+```
+### Install Dependencies
+```bash
+npm install
+```
+### Set Environment Variables
+Create a .env file in the root directory and add your environment variables. Example:
+```bash
+PORT=5000
+DATABASE_URL=mongodb://localhost:27017/gymdb
+JWT_SECRET=your_jwt_secret_key
+```
+### Compile TypeScript
+```bash
+npx tsc
+```
+This will compile your TypeScript code into JavaScript inside the dist/ folder.
+
+### Start the Server
+```bash
+npm start
+```
+Server will run on:
+http://localhost:3000
