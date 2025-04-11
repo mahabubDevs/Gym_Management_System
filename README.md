@@ -64,7 +64,7 @@ Response:
 ```
 
 ### Trainer Routes
-#### POST `/trainers/`
+#### POST `/trainers`
 Headers:
 Authorization: Bearer <trainer_token>
 
@@ -93,7 +93,7 @@ Response:
 
 ```
 
-#### GET `/trainers/`
+#### GET `/trainers`
 Headers:
 Authorization: Bearer <trainer_token>
 
@@ -147,6 +147,179 @@ Response:
     }
 }
 ```
+
+### Trainee Routes
+#### POST `/trainees`
+Headers:
+Authorization: Bearer <trainer_token>
+
+```json
+Request body:
+{
+    "name": "new trainees 2",
+    "email": "newtrainees2@gmail.com",
+    "password": "test"
+}
+Response:
+{
+    "success": true,
+    "message": "Trainee created successfully.",
+    "data": {
+        "success": true,
+        "statusCode": 201,
+        "message": "Trainee created successfully",
+        "data": {
+            "name": "new trainees 2",
+            "email": "newtrainees2@gmail.com",
+            "role": "trainee",
+            "bookedClasses": [],
+            "_id": "67f8ea39a8294b107edb3e9b",
+            "createdAt": "2025-04-11T10:08:57.792Z",
+            "updatedAt": "2025-04-11T10:08:57.792Z",
+            "__v": 0
+        }
+    }
+}
+
+```
+#### GET `/trainees`
+Headers:
+Authorization: Bearer <trainer_token>
+
+```json
+Response:
+{
+    "success": true,
+    "data": {
+        "success": true,
+        "statusCode": 200,
+        "data": [
+            {
+                "_id": "67f7753ba1cb71a3d892df7a",
+                "name": "mahabub",
+                "email": "test1111@gmail.com",
+                "password": "$2b$10$E8yRu7Q4HDBxOzoDXELk1uGWI.c645YeROtEClbZk/B9sbch3d5Za",
+                "role": "trainee",
+                "bookedClasses": [],
+                "createdAt": "2025-04-10T07:37:31.567Z",
+                "updatedAt": "2025-04-10T07:37:31.567Z",
+                "__v": 0
+            },
+            {
+                "_id": "67f8771e7c56af1f3131ffb9",
+                "name": "new Trainee",
+                "email": "trainee@gmail.com",
+                "password": "$2b$10$6Xloe5lnPQ0V4ClQN/Bx/eoZJVjj2jaDam.rr4DQSiKGiN9BZrpHu",
+                "role": "trainee",
+                "bookedClasses": [],
+                "createdAt": "2025-04-11T01:57:50.452Z",
+                "updatedAt": "2025-04-11T01:57:50.452Z",
+                "__v": 0
+            },
+            
+        ]
+    }
+}
+```
+#### GET `/trainees/:id`
+Headers:
+Authorization: Bearer <trainer_token>
+
+```json
+Response:
+
+{
+    "success": true,
+    "data": {
+        "success": true,
+        "statusCode": 200,
+        "data": [
+            {
+                "_id": "67f7753ba1cb71a3d892df7a",
+                "name": "mahabub",
+                "email": "test1111@gmail.com",
+                "password": "$2b$10$E8yRu7Q4HDBxOzoDXELk1uGWI.c645YeROtEClbZk/B9sbch3d5Za",
+                "role": "trainee",
+                "bookedClasses": [],
+                "createdAt": "2025-04-10T07:37:31.567Z",
+                "updatedAt": "2025-04-10T07:37:31.567Z",
+                "__v": 0
+            },
+          
+        ]
+    }
+}
+```
+
+#### POST `/trainees/book-class`
+Headers:
+Authorization: Bearer <trainer_token>
+
+```json
+Request body:
+{
+    "scheduleId": "67f8e096f6fcc959ce017cfc"
+}
+
+Response:
+
+{
+    "success": true,
+    "statusCode": 201,
+    "message": "Class booked successfully.",
+    "Data": {
+        "schedule": {
+            "_id": "67f8e096f6fcc959ce017cfc",
+            "date": "2025-12-03T18:00:00.000Z",
+            "startTime": "4:00 pm",
+            "endTime": "6:00pm",
+            "trainer": "67f876847c56af1f3131ffab",
+            "trainees": [
+                "67f8771e7c56af1f3131ffb9"
+            ],
+            "createdAt": "2025-04-11T09:27:50.218Z",
+            "updatedAt": "2025-04-11T10:32:23.468Z",
+            "__v": 1
+        }
+    }
+}
+
+```
+#### POST `/trainees/cancel-booking`
+
+Headers:
+Authorization: Bearer <trainer_token>
+
+```json
+Request body:
+{
+    "scheduleId": "67f8e096f6fcc959ce017cfc"
+}
+
+Response:
+
+{
+    "success": true,
+    "message": "Booking cancelled successfully.",
+    "Data": {
+        "schedule": {
+            "_id": "67f8e20cf6fcc959ce017d02",
+            "date": "2025-12-04T00:00:00.000Z",
+            "startTime": "4:00 pm",
+            "endTime": "6:00pm",
+            "trainer": "67f876847c56af1f3131ffab",
+            "trainees": [],
+            "createdAt": "2025-04-11T09:34:04.745Z",
+            "updatedAt": "2025-04-11T10:22:41.629Z",
+            "__v": 2
+        }
+    }
+}
+
+```
+
+
+
 
 
 ## Admin Credentials
