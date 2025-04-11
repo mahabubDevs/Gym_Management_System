@@ -56,13 +56,16 @@ const Schema = mongoose.Schema;
 const ScheduleSchema = new Schema({
     date: { type: Date, required: true },
     startTime: { type: String, required: true }, // e.g., "09:00"
-    endTime: { type: String, required: true },   // e.g., "11:00" (2-hour duration)
+    endTime: { type: String, required: true },    // e.g., "11:00" (2-hour duration)
     trainer: { type: Schema.Types.ObjectId, ref: 'Trainer', required: true },
     trainees: [{ type: Schema.Types.ObjectId, ref: 'Trainee' }]
 }, { timestamps: true });
 
 module.exports = mongoose.model('Schedule', ScheduleSchema);
 
+---
+
+## Technologies Used
 
 ## Technology Stack
 
