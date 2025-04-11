@@ -14,7 +14,7 @@ This system is designed to efficiently manage gym operations by providing a plat
 - **ODM**: Mongoose
 - **Authentication**: JWT (JSON Web Tokens)
 - **Password Hashing**: bcrypt
--  **Password Hashing**: dotenv
+-  **Environment setup**: dotenv
 
 ## Admin Credentials
 - Email : admin@gmail.com
