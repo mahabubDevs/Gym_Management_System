@@ -23,60 +23,83 @@ This system is designed to efficiently manage gym operations by providing a plat
 ## Database Schema (Mongoose Models)
 
 ```javascript
-// models/admin.model.js (Potentially merged with Trainer model)
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+// models/Trainer and admin.model.js (Potentially merged with Trainer model)
+import mongoose, { Schema, Document } from 'mongoose';
 
-const AdminSchema = new Schema({
+export interface TrainerDocument extends Document {
+  name: string;
+  email: string;
+  password?: string;
+  role: string;
+}
+
+const TrainerSchema: Schema = new Schema(
+  {
     name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    role: { type: String, default: 'admin', immutable: true }
-}, { timestamps: true });
+    email: { type: String, required: true, unique: true ,match: [/.+\@.+\..+/, 'Invalid email format.']},
+    password: { type: String },
+    role: { type: String, enum: ['admin', 'trainer'], default: 'trainer' },
+    
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('Admin', AdminSchema);
+const Trainer = mongoose.model<TrainerDocument>('Trainer', TrainerSchema);
 
-// models/trainer.model.js
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+export default Trainer;
 
-const TrainerSchema = new Schema({
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    role: { type: String, default: 'trainer', immutable: true }
-}, { timestamps: true });
-
-module.exports = mongoose.model('Trainer', TrainerSchema);
 
 // models/trainee.model.js
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import mongoose, { Schema, Document } from 'mongoose';
 
-const TraineeSchema = new Schema({
+export interface TraineeDocument extends Document {
+  name: string;
+  email: string;
+  password?: string;
+  role: string;
+  bookedClasses: mongoose.Types.ObjectId[];
+}
+
+const TraineeSchema: Schema = new Schema(
+  {
     name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    role: { type: String, default: 'trainee', immutable: true },
-    bookedClasses: [{ type: Schema.Types.ObjectId, ref: 'Schedule' }]
-}, { timestamps: true });
+    email: { type: String, required: true, unique: true,match: [/.+\@.+\..+/, 'Invalid email format.'] },
+    password: { type: String },
+    role: { type: String, enum: ['trainee'], default: 'trainee' },
+    bookedClasses: [{ type: Schema.Types.ObjectId, ref: 'Schedule', default: [] }],
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('Trainee', TraineeSchema);
+const Trainee = mongoose.model<TraineeDocument>('Trainee', TraineeSchema);
+
+export default Trainee;
 
 // models/schedule.model.js
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import mongoose, { Schema, Document } from 'mongoose';
 
-const ScheduleSchema = new Schema({
+export interface ScheduleDocument extends Document {
+  date: Date;
+  startTime: string;
+  endTime: string;
+  trainer: mongoose.Types.ObjectId;
+  trainees: mongoose.Types.ObjectId[];
+}
+
+const ScheduleSchema: Schema = new Schema(
+  {
     date: { type: Date, required: true },
-    startTime: { type: String, required: true }, // e.g., "09:00"
-    endTime: { type: String, required: true },   // e.g., "11:00" (2-hour duration)
+    startTime: { type: String, required: true },
+    endTime: { type: String, required: true },
     trainer: { type: Schema.Types.ObjectId, ref: 'Trainer', required: true },
-    trainees: [{ type: Schema.Types.ObjectId, ref: 'Trainee' }]
-}, { timestamps: true });
+    trainees: [{ type: Schema.Types.ObjectId, ref: 'Trainee', default: [] }],
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('Schedule', ScheduleSchema);
+const Schedule = mongoose.model<ScheduleDocument>('Schedule', ScheduleSchema);
 
+export default Schedule;
 ```
 
 
