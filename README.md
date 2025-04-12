@@ -14,7 +14,6 @@ This system is designed to efficiently manage gym operations by providing a plat
 - **ODM**: Mongoose
 - **Authentication**: JWT (JSON Web Tokens)
 - **Password Hashing**: bcrypt
--  **Environment setup**: dotenv
 
   ##  API Endpoints
   All endpoints are prefixed with:
